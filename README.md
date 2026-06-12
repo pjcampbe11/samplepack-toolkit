@@ -1,6 +1,4 @@
-# Sample Pack Toolkit
-
-End-to-end pipeline: your WAV library → fine-tuned audio model → finished, sellable sample packs (one-shots, drum loops/breaks, melodic loops, stems).
+# Samplepack Toolkit
 
 **Architecture:** fine-tune [Stable Audio Open 1.0](https://huggingface.co/stabilityai/stable-audio-open-1.0) (stereo, 44.1 kHz, up to ~47 s per generation) using Stability's [stable-audio-tools](https://github.com/Stability-AI/stable-audio-tools). Dataset prep, post-processing, and pack assembly run on any machine; training runs on a rented cloud GPU; generation runs on any ~8 GB+ NVIDIA GPU or cloud.
 
