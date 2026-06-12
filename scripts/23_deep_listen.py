@@ -188,6 +188,31 @@ def musical(path, y, sr):
 
 # ---------- layer 3: sound event identification (PANNs / AudioSet) ----------
 
+_PANNS_FILES = {
+    "class_labels_indices.csv":
+        "https://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv",
+    "Cnn14_DecisionLevelMax_mAP=0.385.pth":
+        "https://zenodo.org/record/3987831/files/Cnn14_DecisionLevelMax_mAP%3D0.385.pth?download=1",
+}
+
+
+def _ensure_panns_data():
+    """panns_inference fetches its files with wget, which Windows lacks.
+    Download them with urllib instead (one-time, ~470 MB checkpoint)."""
+    import urllib.request
+    home = Path.home() / "panns_data"
+    home.mkdir(exist_ok=True)
+    for name, url in _PANNS_FILES.items():
+        dest = home / name
+        if not dest.exists() or dest.stat().st_size < 1000:
+            print(f"Downloading {name} (one-time)...")
+            urllib.request.urlretrieve(url, str(dest))
+    return home
+
+
+_SED_CACHE = {}
+
+
 def sound_events(path, top_clip=15, frame_threshold=0.3):
     try:
         from panns_inference import SoundEventDetection, labels
@@ -195,7 +220,12 @@ def sound_events(path, top_clip=15, frame_threshold=0.3):
         return {"skipped": "panns-inference not installed (pip install panns-inference)"}
     import librosa
     audio, _ = librosa.load(str(path), sr=32000, mono=True)
-    sed = SoundEventDetection(checkpoint_path=None, device="cuda" if _has_cuda() else "cpu")
+    if "sed" not in _SED_CACHE:  # load model ONCE for the whole batch
+        home = _ensure_panns_data()
+        _SED_CACHE["sed"] = SoundEventDetection(
+            checkpoint_path=str(home / "Cnn14_DecisionLevelMax_mAP=0.385.pth"),
+            device="cuda" if _has_cuda() else "cpu")
+    sed = _SED_CACHE["sed"]
     framewise = sed.inference(audio[None, :])[0]  # (frames, 527)
     clipwise = framewise.max(axis=0)
     order = np.argsort(-clipwise)[:top_clip]
@@ -231,13 +261,19 @@ def _has_cuda():
 
 # ---------- layer 4: mood / vibe (CLAP zero-shot) ----------
 
+_CLAP_CACHE = {}
+
+
 def vibe(path):
     try:
         import laion_clap
     except ImportError:
         return {"skipped": "laion-clap not installed (pip install laion-clap)"}
-    model = laion_clap.CLAP_Module(enable_fusion=False)
-    model.load_ckpt()
+    if "m" not in _CLAP_CACHE:  # load model ONCE for the whole batch
+        m = laion_clap.CLAP_Module(enable_fusion=False)
+        m.load_ckpt()
+        _CLAP_CACHE["m"] = m
+    model = _CLAP_CACHE["m"]
     aemb = model.get_audio_embedding_from_filelist([str(path)], use_tensor=False)
     aemb = aemb / np.linalg.norm(aemb, axis=1, keepdims=True)
     out = {}
@@ -329,11 +365,19 @@ def analyze(path, args, out_dir, rel=None):
     rep["musical"] = musical(path, y, sr)
     rep["layers"]["musical"] = rep["musical"].get("beat_tracker", "ok")
     if not args.no_events:
-        rep["sound_events"] = sound_events(path)
-        rep["layers"]["sound_events"] = rep["sound_events"].get("skipped", "panns")
+        try:
+            rep["sound_events"] = sound_events(path)
+            rep["layers"]["sound_events"] = rep["sound_events"].get("skipped", "panns")
+        except Exception as e:
+            rep["sound_events"] = {"error": str(e)}
+            rep["layers"]["sound_events"] = f"FAILED: {e}"
     if not args.no_vibe:
-        rep["vibe"] = vibe(path)
-        rep["layers"]["vibe"] = rep["vibe"].get("skipped", "clap") if isinstance(rep["vibe"], dict) else "clap"
+        try:
+            rep["vibe"] = vibe(path)
+            rep["layers"]["vibe"] = rep["vibe"].get("skipped", "clap") if isinstance(rep["vibe"], dict) else "clap"
+        except Exception as e:
+            rep["vibe"] = {"error": str(e)}
+            rep["layers"]["vibe"] = f"FAILED: {e}"
     rep["summary"] = summarize(rep)
     out_dir.mkdir(parents=True, exist_ok=True)
     json_path.write_text(json.dumps(rep, indent=2), encoding="utf-8")
