@@ -1,0 +1,22 @@
+{
+    "pack_name": "Iron Foundry Vol 1",
+    "bpm": 160,
+    "categories": [
+        {"name": "Kicks",       "count": 25, "seconds": 1.5,
+         "prompt": "metal, drums oneshots, kicks, one shot, tight clicky metal kick drum, triggered punch"},
+        {"name": "Snares",      "count": 25, "seconds": 1.5,
+         "prompt": "metal, drums oneshots, snares, one shot, cracking high-tuned metal snare, room reverb"},
+        {"name": "Cymbals",     "count": 20, "seconds": 3.0,
+         "prompt": "metal, drums oneshots, cymbals, one shot, china cymbal crash accent"},
+        {"name": "Toms",        "count": 15, "seconds": 2.0,
+         "prompt": "rock, drums oneshots, percussion, one shot, big rock tom hit, roomy"},
+        {"name": "DrumLoops",   "count": 25, "seconds": 8.0,
+         "prompt": "metal, drums loops, 160 BPM, double kick groove, tight aggressive metal drums"},
+        {"name": "RiffLoops",   "count": 25, "seconds": 8.0,
+         "prompt": "metal, melodic loops, riffs, 160 BPM, key of E minor, palm-muted distorted guitar chugs, drop tuning, tight high-gain"},
+        {"name": "BassLoops",   "count": 15, "seconds": 8.0,
+         "prompt": "metal, melodic loops, bass, 160 BPM, key of E minor, driving distorted bass guitar"},
+        {"name": "Stems",       "count": 10, "seconds": 30.0,
+         "prompt": "metal, stems, full instrumental, 160 BPM, key of E minor, heavy riff with double kick drums and bass"}
+    ]
+}

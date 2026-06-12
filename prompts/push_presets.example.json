@@ -1,0 +1,59 @@
+{
+    "presets": [
+        {
+            "name": "kick",
+            "prompt": "hip hop, drums oneshots, kicks, one shot, punchy boom bap kick, dusty",
+            "seconds": 1.5
+        },
+        {
+            "name": "snare",
+            "prompt": "hip hop, drums oneshots, snares, one shot, cracking boom bap snare",
+            "seconds": 1.5
+        },
+        {
+            "name": "hat",
+            "prompt": "hip hop, drums oneshots, hats, one shot, crisp closed hi-hat",
+            "seconds": 1.0
+        },
+        {
+            "name": "drumloop",
+            "prompt": "hip hop, drums loops, boom bap, 90 BPM, dusty drum break, swung",
+            "seconds": 8.0
+        },
+        {
+            "name": "soulkeys",
+            "prompt": "hip hop, melodic loops, soul keys, 90 BPM, warm soulful chords, vinyl crackle",
+            "seconds": 16.0
+        },
+        {
+            "name": "darkstrings",
+            "prompt": "hip hop, melodic loops, dark strings, 90 BPM, eerie cinematic, tape texture",
+            "seconds": 16.0
+        },
+        {
+            "name": "metalriff",
+            "prompt": "metal, melodic loops, riffs, 160 BPM, key of E minor, palm-muted distorted guitar chugs, high-gain",
+            "seconds": 8.0
+        },
+        {
+            "name": "metaldrums",
+            "prompt": "metal, drums loops, 160 BPM, double kick groove, tight aggressive drums",
+            "seconds": 8.0
+        },
+        {
+            "name": "dnbbreak",
+            "prompt": "drum and bass, drums loops, 174 BPM, fast chopped breakbeat, two step",
+            "seconds": 8.0
+        },
+        {
+            "name": "reese",
+            "prompt": "drum and bass, melodic loops, bass, 174 BPM, key of F minor, dark rolling reese bassline",
+            "seconds": 8.0
+        },
+        {
+            "name": "wobble",
+            "prompt": "dubstep, melodic loops, bass, 140 BPM, key of F minor, aggressive wobble bass growl",
+            "seconds": 8.0
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "pack_name": "Dusty Crates Vol 1",
+    "bpm": 90,
+    "categories": [
+        {"name": "Kicks",        "count": 30, "seconds": 1.5,
+         "prompt": "hip hop, drums oneshots, kicks, one shot, punchy boom bap kick drum, dusty vinyl texture"},
+        {"name": "Snares",       "count": 30, "seconds": 1.5,
+         "prompt": "hip hop, drums oneshots, snares, one shot, cracking boom bap snare drum, dusty vinyl texture"},
+        {"name": "Hats",         "count": 25, "seconds": 1.0,
+         "prompt": "hip hop, drums oneshots, hats, one shot, crisp closed hi-hat, vinyl texture"},
+        {"name": "Percs",        "count": 20, "seconds": 1.5,
+         "prompt": "hip hop, drums oneshots, percussion, one shot, rimshot shaker percussion hit"},
+        {"name": "DrumLoops",    "count": 25, "seconds": 8.0,
+         "prompt": "hip hop, drums loops, boom bap, 90 BPM, dusty drum break, swung groove, vinyl texture"},
+        {"name": "MelodicLoops", "count": 25, "seconds": 16.0,
+         "prompt": "hip hop, melodic loops, soul keys, 90 BPM, key of F minor, warm soulful chords, vinyl crackle, sampled feel"},
+        {"name": "Stems",        "count": 10, "seconds": 30.0,
+         "prompt": "hip hop, stems, full instrumental, 90 BPM, key of F minor, soulful boom bap beat with bass, keys and drums"}
+    ]
+}

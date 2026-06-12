@@ -1,0 +1,26 @@
+{
+    "pack_name": "Pressure System Vol 1",
+    "bpm": 174,
+    "categories": [
+        {"name": "Kicks",       "count": 25, "seconds": 1.0,
+         "prompt": "drum and bass, drums oneshots, kicks, one shot, punchy tight dnb kick"},
+        {"name": "Snares",      "count": 25, "seconds": 1.0,
+         "prompt": "drum and bass, drums oneshots, snares, one shot, sharp cracking dnb snare"},
+        {"name": "Hats",        "count": 20, "seconds": 1.0,
+         "prompt": "drum and bass, drums oneshots, hats, one shot, crisp hi-hat"},
+        {"name": "BassOneshots", "count": 25, "seconds": 2.5,
+         "prompt": "dubstep, drums oneshots, 808s, one shot, heavy wobble bass stab, growl"},
+        {"name": "DnbBreaks",   "count": 25, "seconds": 8.0,
+         "prompt": "drum and bass, drums loops, 174 BPM, fast chopped breakbeat, two step groove, punchy"},
+        {"name": "DubstepDrums", "count": 20, "seconds": 8.0,
+         "prompt": "dubstep, drums loops, 140 BPM, halftime drums, heavy snare on the three"},
+        {"name": "ReeseLoops",  "count": 20, "seconds": 8.0,
+         "prompt": "drum and bass, melodic loops, bass, 174 BPM, key of F minor, dark reese bassline, rolling"},
+        {"name": "WobbleLoops", "count": 20, "seconds": 8.0,
+         "prompt": "dubstep, melodic loops, bass, 140 BPM, key of F minor, aggressive wobble bass, LFO modulated growl"},
+        {"name": "Risers",      "count": 15, "seconds": 4.0,
+         "prompt": "dubstep, fx, riser, one shot, tension build-up sweep into drop"},
+        {"name": "Stems",       "count": 10, "seconds": 30.0,
+         "prompt": "drum and bass, stems, full instrumental, 174 BPM, key of F minor, rolling break with reese bass and pads"}
+    ]
+}
